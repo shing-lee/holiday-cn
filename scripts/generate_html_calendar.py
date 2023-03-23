@@ -3,6 +3,7 @@
 
 import sys
 import calendar
+from datetime import datetime
 from dominate.tags import *
 from get_night_tradingdays import *
 
@@ -102,7 +103,7 @@ def generate_result_table_monthly(year, month, tradingdays_mapping, not_working_
     result_div += br()
     return result_div
 
-def generate_html_calendar(year, names, mapping, dates):
+def generate_html_calendar(year, mapping, dates):
     # html init
     html_root = html(lang="zh")
     # html head
@@ -118,18 +119,25 @@ def generate_html_calendar(year, names, mapping, dates):
 
 
 if __name__ == "__main__":
-    names = ['A', 'B', 'C', 'D', 'E']
-    year = sys.argv[1]
+    names = sys.argv[1]
+    year = sys.argv[2]
+    if not names:
+        names = ['A', 'B', 'C', 'D', 'E']
+    else:
+        names = (
+            list(filter(None, names.split(",")))
+            if isinstance(names, str)
+            else names
+        )
     if not year:
-        year = 2023
+        year = datetime.now().year
     else:
         year = int(year)
     # night tradingdays
     night_tradingdays_mapping, not_working_dates = generate_night_tradingdays_mapping(year=year, names=names)
     # html txt
-    html_txt = generate_html_calendar(year, names, night_tradingdays_mapping, not_working_dates)
+    html_txt = generate_html_calendar(year, night_tradingdays_mapping, not_working_dates)
 
     # save as html file
     with open(f'../{year}.html', 'w') as f:
         f.write(html_txt.render())
-

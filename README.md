@@ -5,7 +5,7 @@
 [![CalVer](https://img.shields.io/badge/calver-YYYY.0M.0D-22bfda.svg)](http://calver.org)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c8e9d9c51bd2d858c577/maintainability)](https://codeclimate.com/github/NateScarlet/holiday-cn/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c8e9d9c51bd2d858c577/test_coverage)](https://codeclimate.com/github/NateScarlet/holiday-cn/test_coverage)
-![Maintenance](https://img.shields.io/maintenance/yes/2023.svg)
+![Maintenance](https://img.shields.io/maintenance/yes/2024.svg)
 
 中国法定节假日数据 自动每日抓取国务院公告
 
@@ -39,6 +39,8 @@ interface Holidays {
 
 - 年份是按照国务院文件标题年份而不是日期年份，12 月份的日期可能会被下一年的文件影响，因此应检查两个文件。
 
+- `与周末连休` 的周末不是法定节假日，数据里不会包含，见[《全国年节及纪念日放假办法》](https://www.gov.cn/zhengce/content/202411/content_6986380.htm) [#213](https://github.com/NateScarlet/holiday-cn/issues/213#issuecomment-1869546011) [#221](https://github.com/NateScarlet/holiday-cn/issues/221)
+
 ## 通过互联网使用
 
 提示：任何第三方服务都可能故障或停止服务，如果稳定性要求高请自己搭建静态文件服务。
@@ -51,9 +53,11 @@ interface Holidays {
 
 `https://cdn.jsdelivr.net/gh/NateScarlet/holiday-cn@master/{年份}.json`
 
+`https://fastly.jsdelivr.net/gh/NateScarlet/holiday-cn@master/{年份}.json`
+
 也可尝试使用 [ghproxy](https://github.com/hunshcn/gh-proxy) 或其他 Github 加速：
 
-`https://ghproxy.com/https://raw.githubusercontent.com/NateScarlet/holiday-cn/master/{年份}.json`
+`https://{ghproxy服务}/https://raw.githubusercontent.com/NateScarlet/holiday-cn/master/{年份}.json`
 
 ~~访问 github 不方便时可使用国内镜像仓库~~ 2022-08-05: coding 现在要求登录才能下载开源仓库的文件。
 

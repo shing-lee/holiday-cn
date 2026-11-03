@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch holidays from gov.cn  """
+"""Fetch holidays from gov.cn"""
 
 import argparse
 import json

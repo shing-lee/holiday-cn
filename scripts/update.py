@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Script for updating data. """
+"""Script for updating data."""
 
 import argparse
 import json

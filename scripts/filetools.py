@@ -1,4 +1,4 @@
-"""Tools for files.  """
+"""Tools for files."""
 
 import os
 
